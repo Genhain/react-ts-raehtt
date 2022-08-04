@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './style.css';
-import { beers } from './beers';
+import { searchBeers } from './beers';
 import { useState } from "react";
 import { useDebounce } from "./useDebounce"
 
@@ -11,18 +11,14 @@ export default function App() {
 
   const debounce = useDebounce({ callback: onChange })
 
+  const [searchTerm, setSearchTerm] = useState("")
   const [searchedBeers, setSearchedBeers] = useState<string[]>([]);
   const beerList: React.ReactNode = <ul>{ searchedBeers.map(x =>  <li key={x}>{x}</li> ) }</ul>
   
 
   const onInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value)
     debounce(event.target.value)
-  }
-  
-  const searchBeers = (searchTerm: string, callBack: (results: string[]) => void) => {
-    setTimeout(() => {
-      callBack(beers.filter(x => x.includes(searchTerm) ))
-     }, 2000)
   }
 
   return (
