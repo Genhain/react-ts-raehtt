@@ -1,4 +1,4 @@
-import React=require("react")
+import * as React from 'react';
 import { debounceTime, defer, distinctUntilChanged, filter, fromEvent, map, Observable, share, switchMap } from "rxjs"
 import { searchBeers } from "./beers"
 

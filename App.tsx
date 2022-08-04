@@ -1,7 +1,10 @@
 import * as React from 'react';
 import './style.css';
+import { searchBeers } from './beers';
 import { useState } from "react";
+
 import { Grid, List, TextField, ListItem   } from '@mui/material';
+import { Observable } from 'rxjs';
 import { JellyfishSpinner } from 'react-spinners-kit';
 import { emptySearch$, hasBeganSearching$, hasFinishedSearching$, searchedBeers$, useObservable } from './observables';
 
@@ -51,4 +54,5 @@ const style = {
   backgroundColor: { xs: "aliceblue" },
   boxShadow: 6
 };
+
 
