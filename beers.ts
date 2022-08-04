@@ -51,6 +51,6 @@ export const searchBeers = (
   callBack: (results: string[]) => void
 ) => {
   setTimeout(() => {
-    callBack(beers.filter((x) => x.includes(searchTerm)));
+    callBack(beers.filter((x) => x.toLowerCase().includes(searchTerm.toLowerCase())));
   }, 2000);
 };
