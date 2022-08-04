@@ -25,6 +25,7 @@ export const searchedBeers$ = typeAheadFilteredText$.pipe(switchMap(searchBeers$
 export const hasBeganSearching$ = typeAheadFilteredText$.pipe(map(() => true))
 export const hasFinishedSearching$ = searchedBeers$.pipe(map(() => false))
 export const emptySearch$ = input$.pipe(filter(x => x.length === 0), map(() => []))
+export const noBeersOfThatTerm$ = searchedBeers$.pipe(filter(x => x.length == 0),map(() => ["No beers :("]))
 
 export const useObservable = (observable: Observable<any>, setter: React.Dispatch<React.SetStateAction<any>>) => {
   React.useEffect(() => {   

@@ -3,7 +3,7 @@ import './style.css';
 import { useState } from "react";
 import { Grid, List, TextField, ListItem   } from '@mui/material';
 import { JellyfishSpinner } from 'react-spinners-kit';
-import { emptySearch$, hasBeganSearching$, hasFinishedSearching$, searchedBeers$, useObservable } from './observables';
+import { emptySearch$, hasBeganSearching$, hasFinishedSearching$, noBeersOfThatTerm$, searchedBeers$, useObservable } from './observables';
 
 export default function App() {
 
@@ -12,9 +12,12 @@ export default function App() {
 
   useObservable(searchedBeers$, setSearchedBeers)
   useObservable(emptySearch$, setSearchedBeers)
+  useObservable(noBeersOfThatTerm$, setSearchedBeers)
 
   useObservable(hasBeganSearching$, setIsLoading)
   useObservable(hasFinishedSearching$, setIsLoading)
+
+  
   
   const beerList: React.ReactNode = <List>{ searchedBeers.map(x =>  <ListItem key={x}>{x}</ListItem> ) }</List>
 
