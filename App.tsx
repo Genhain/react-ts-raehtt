@@ -1,19 +1,22 @@
 import * as React from 'react';
-import { debounce } from 'lodash';
 import './style.css';
 import { beers } from './beers';
 import { useState } from "react";
+import { useDebounce } from "./useDebounce"
 
 export default function App() {
+  const onChange = (value: string) => searchBeers(value, result => {
+    setSearchedBeers(result)
+  })
+
+  const debounce = useDebounce({ callback: onChange })
+
   const [searchedBeers, setSearchedBeers] = useState<string[]>([]);
-  const beerList: React.ReactNode = <ul>{ searchedBeers.map(x => { <li>{x}</li> }) }</ul>
+  const beerList: React.ReactNode = <ul>{ searchedBeers.map(x =>  <li key={x}>{x}</li> ) }</ul>
+  
 
   const onInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debounce(() => {
-      searchBeers(event.target.value, result => {
-        setSearchedBeers(result)
-      })
-    }, 1000)
+    debounce(event.target.value)
   }
   
   const searchBeers = (searchTerm: string, callBack: (results: string[]) => void) => {
