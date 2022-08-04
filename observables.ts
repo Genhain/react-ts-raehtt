@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { debounceTime, defer, distinctUntilChanged, filter, fromEvent, map, Observable, share, switchMap } from "rxjs"
+import { concatMap } from 'rxjs/operators';
 import { searchBeers } from "./beers"
 
 export const input$ = defer(() => fromEvent(document.getElementById('input')!, 'keyup').pipe(map(x => (x.target as HTMLInputElement).value)))
@@ -20,7 +21,7 @@ export const typeAheadFilteredText$ = input$.pipe(
   share()
 )
 
-export const searchedBeers$ = typeAheadFilteredText$.pipe(switchMap(searchBeers$))
+export const searchedBeers$ = typeAheadFilteredText$.pipe(concatMap(searchBeers$))
 export const hasBeganSearching$ = typeAheadFilteredText$.pipe(map(() => true))
 export const hasFinishedSearching$ = searchedBeers$.pipe(map(() => false))
 export const emptySearch$ = input$.pipe(filter(x => x.length === 0), map(() => []))

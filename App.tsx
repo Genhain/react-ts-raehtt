@@ -14,9 +14,10 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false)
 
   useObservable(searchedBeers$, setSearchedBeers)
+  useObservable(emptySearch$, setSearchedBeers)
+
   useObservable(hasBeganSearching$, setIsLoading)
   useObservable(hasFinishedSearching$, setIsLoading)
-  useObservable(emptySearch$, setSearchedBeers)
   
   const beerList: React.ReactNode = <List>{ searchedBeers.map(x =>  <ListItem key={x}>{x}</ListItem> ) }</List>
 
