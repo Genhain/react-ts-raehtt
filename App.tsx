@@ -11,7 +11,7 @@ const style = {
   mt: 2,
   ml: 2,
   width: { sm: 200, md: 300 },
-  backgroundColor: { xs: "secondary.light", sm: "#fff" },
+  backgroundColor: { xs: "aliceblue" },
   boxShadow: 6
 };
 
