@@ -21,7 +21,7 @@ export const typeAheadFilteredText$ = input$.pipe(
   share()
 )
 
-export const searchedBeers$ = typeAheadFilteredText$.pipe(concatMap(searchBeers$))
+export const searchedBeers$ = typeAheadFilteredText$.pipe(switchMap(searchBeers$))
 export const hasBeganSearching$ = typeAheadFilteredText$.pipe(map(() => true))
 export const hasFinishedSearching$ = searchedBeers$.pipe(map(() => false))
 export const emptySearch$ = input$.pipe(filter(x => x.length === 0), map(() => []))
