@@ -16,8 +16,6 @@ export default function App() {
 
   useObservable(hasBeganSearching$, setIsLoading)
   useObservable(hasFinishedSearching$, setIsLoading)
-
-  
   
   const beerList: React.ReactNode = <List>{ searchedBeers.map(x =>  <ListItem key={x}>{x}</ListItem> ) }</List>
 
